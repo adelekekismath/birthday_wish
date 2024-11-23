@@ -1,21 +1,26 @@
 #root {
-  margin: 0 auto;
-  padding: 2rem;
-  font-family: "Birthstone",  serif;
-  background-image: url('../assets/images/backgroun-img.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 100vw;
-  height: 100vh;
   
+  background-image: url('https://png.pngtree.com/png-vector/20240404/ourmid/pngtree-colorful-happy-birthday-balloons-png-image_12259349.png');
+  background-repeat: no-repeat;
+  background-position: left center, right center; /* Positionner à gauche et à droite */
+  background-size: 40%; /* Ajuster la taille */
+  background-color: #daacba;
+  display: block;
+  overflow-x: hidden;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+ 
 }
 
 /* General Container */
 .form-container {
-  font-family: 'Arial, sans-serif';
   text-align: center;
   padding: 10px;
   font-family: "Birthstone",  cursive;
+  margin: 0 auto;
 }
 
 input{
@@ -98,6 +103,7 @@ input{
   color: #fff;
   font-size: 1.5em;
   font-weight: bold;
+  font-family: inherit;
   padding: 10px 20px;
   border-radius: 25px;
   border: none;
@@ -245,7 +251,6 @@ input{
   margin-top: 10px;
   display: flex;
   align-items: start;
-  font-family: "Arial", sans-serif;
   gap: 10px;
 }
 
@@ -294,7 +299,7 @@ input{
   display: none; /* Hide the native file input */
 }
 
-#text {
+#birthday-message{
 	width:270px;
 	overflow:hidden;
 	background-color:#FFF;
@@ -318,6 +323,108 @@ input{
   overflow: hidden;
    word-wrap: break-word; 
    height: 160px;
+}
+
+.copy-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.back-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.link-container {
+  padding: 20px;
+  background: #e9ecef;
+  border-radius: 8px;
+}
+
+.link-display {
+  margin-bottom: 10px;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+#bff-img {
+  width: 150px;
+  border-radius: 50%;
+  border: 6px solid #e91e63;
+  margin-bottom: 10px;
+}
+
+#bday-age {
+  background: #e91e63;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px 0 10px 0;
+}
+
+#bday-date {
+  margin: 0;
+  background: #e91e63;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#wishes {
+  text-align: center;
+  font-family: "Birthstone", cursive;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.gift-section {
+  margin-top: 50px;
+}
+
+.gift-title {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.gift-hint {
+  margin-top: 0;
+  font-size: 1.5rem;
+}
+
+#gift-img-cheers {
+  height: 200px;
+}
+
+.gift-img {
+  margin: 20px auto;
+  max-width: 400px;
+  height: 400px;
+  border: 6px solid white;
+  border-radius: 10px;
+  background-image: url("../assets/images/gift-cover.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+#footer {
+  font-style: italic;
+  width: 400px;
+  margin: 40px auto 20px;
+}
+
+a {
+  color: white;
 }
 
 

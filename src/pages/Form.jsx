@@ -4,7 +4,6 @@ import { addDoc, collection } from "firebase/firestore";
 import {
   ref,
   uploadBytes,
-  uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
 import "../styles/App.scss";
@@ -43,14 +42,14 @@ function Form() {
   const [formData, setFormData] = useState({
     senderName: "",
     name: "",
-    dob: "",
+    dateOfBirth: "",
     photo: null,
     qualities: [],
+    birthdayMessage: "",
   });
 
   const handleChangeInput = (e) => {
     const { name, value, checked } = e.target;
-    console.log(name);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: checked ? [...prevFormData.qualities, value] : value,
@@ -65,36 +64,54 @@ function Form() {
     }
   };
 
-  const handleUpload = async (file) => {
+  const handleUpload = async () => {
     if (!storage) return;
 
     if (!celebrantImage) return;
 
     const storageRef = ref(storage, `images/${celebrantImage.name}`);
+    console.log(storageRef);
 
     await uploadBytes(storageRef, celebrantImage);
+  
     return await getDownloadURL(storageRef);
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      dateOfBirth: "",
+      celebrantPhotoUrl: null,
+      qualities: [],
+    });
+    setLink("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const photoUrl = handleUpload();
-
-    const docRef = await addDoc(collection(db, "birthdayWishes"), {
-      senderName: formData.senderName,
-      name: formData.name,
-      dob: formData.dob,
-      photo: photoUrl,
-      qualities: formData.qualities,
-    });
-
-    setLink(`/wishes/${docRef.id}`);
+    try {
+      const celebrantPhotoUrl = await handleUpload();
+  
+      const docRef = await addDoc(collection(db, "birthdayWishes"), {
+        senderName: formData.senderName,
+        name: formData.name,
+        dateOfBirth: formData.dateOfBirth,
+        celebrantPhotoUrl: celebrantPhotoUrl,
+        qualities: formData.qualities,
+        birthdayMessage: formData.birthdayMessage,
+      });
+  
+      console.log("Document written with ID: ", docRef.id);
+      setLink(`/wishes?id=${docRef.id}`);
+    } catch (error) {
+      console.error("Error adding document: ", error);
+    }
   };
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit} className="birthday-form">
+       {!link ? (<form onSubmit={handleSubmit} className="birthday-form">
         <h1 className="form-title">
           🎉 Créer un Vœu d'Anniversaire Personnalisé 🎂
         </h1>
@@ -124,8 +141,8 @@ function Form() {
           Sa date de naissance :
           <input
             type="date"
-            name="dob"
-            value={formData.dob}
+            name="dateOfBirth"
+            value={formData.dateOfBirth}
             onChange={handleChangeInput}
             required
             className="form-input"
@@ -152,7 +169,7 @@ function Form() {
             <input
               type="file"
               id="image-upload"
-              name="photo"
+              name="celebrantPhotoUrl"
               accept="image/*"
               className="form-input file-input"
               onChange={handleImageChange}
@@ -165,7 +182,7 @@ function Form() {
             <label key={quality} className="qualities-label checkbox-wrapper">
               <input
                 type="checkbox"
-                value={formData.qualities}
+                value={quality}
                 onChange={handleChangeInput}
                 name="qualities"
                 className="checkbox-input"
@@ -183,8 +200,8 @@ function Form() {
         <label htmlFor="birthday-message">
           <textarea
             placeholder="Ecrivez un vœu d'anniversaire."
-            id="text"
-            name="text"
+            id="birthday-message"
+            name="birthdayMessage"
             rows="4"
           ></textarea>
         </label>
@@ -192,14 +209,24 @@ function Form() {
         <button type="submit" className="submit-button">
           🎁 Créer le Vœu
         </button>
-      </form>
-      {link && (
+      </form>) : (
+        <div className="link-container">
         <p className="link-display">
           🎉 Votre lien :{" "}
-          <a href={link} className="link">
+          <a href={link} className="link" target="_blank" rel="noopener">
             {link}
           </a>
         </p>
+        <button
+          className="copy-button"
+          onClick={() => navigator.clipboard.writeText(link)}
+        >
+          Copier le lien
+        </button>
+        <button className="back-button" onClick={resetForm}>
+          Retour
+        </button>
+      </div>
       )}
     </div>
   );
