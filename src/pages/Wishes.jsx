@@ -39,14 +39,14 @@ export default function Wishes() {
         celebrant && (
         <div id="wishes">
         <div id="header">
-            <h1>Today is {celebrant.name}'s birthday 🎉 </h1>
+            <h1>Today is &nbsp; <span className="celebrant-name">{celebrant.name}</span> 's birthday 🎉 </h1>
             <img id="bff-img" src={celebrant.celebrantPhotoUrl}/>
             <h2 id="bday-age">{celeBrantAge} years old</h2>
             <h4 id="bday-date">{celebrant.dateOfBirth}</h4>
         </div>
         
         <div className="gift-section">
-            <h2 className="gift-title">Here's how happy I am for you today 🥳</h2>
+            <h2 className="gift-title">Voici à quel point je suis heureuse pour toi aujourd'hui 🥳</h2>
             <div className="gift-img" id="gift-img-happy" style={{backgroundImage: `url('https://i.pinimg.com/originals/12/c8/00/12c800aaca044f40c1402d24b5dabfd8.gif')`}}></div>
         </div>
 
@@ -62,12 +62,9 @@ export default function Wishes() {
         })}
         
          <div className="gift-section">
-            <h2 className="gift-title">This one's for you, my friend 🥂</h2>
+            <h2 className="gift-title">This one's for you, my sister 🥂</h2>
             <div className="gift-img" id="gift-img-cheers" style={{backgroundImage: `url('https://reactiongifs.me/wp-content/uploads/2022/10/Cheers-Leonardo-DiCaprio.gif')`}}></div>
-        </div>
-        
-        <p id="footer">Want to create your own Birthday GIFt site? Take <a href="https://scrimba.com/learn/htmlandcss" target="_blank">this HTML & CSS course.</a></p>
-        
+        </div>        
         </div>)
     );
     }

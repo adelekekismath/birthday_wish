@@ -356,9 +356,16 @@ input{
 
 #bff-img {
   width: 150px;
-  border-radius: 50%;
-  border: 6px solid #e91e63;
+  border: 5px solid #e91e63; /* Bordure dorée */
+  border-radius: 50%; /* Pour un effet circulaire */
+  box-shadow: 0 0 15px #e91e63, 0 0 10px rgba(0, 0, 0, 0.5); /* Ombres dorées et noires */
+  padding: 10px; /* Espace pour améliorer l'effet */
+  //background: linear-gradient(145deg, #f3e5ab, #e7c855); /* Dégradé doré royal */
+  height: 180px; /* Assurez-vous qu'il correspond à votre image */
+  display: block; /* Centrage */
+  margin: 0 auto; /* Centré sur la page */
   margin-bottom: 10px;
+
 }
 
 #bday-age {
@@ -415,6 +422,7 @@ input{
   background-image: url("../assets/images/gift-cover.jpg");
   background-size: cover;
   background-position: center;
+  
 }
 
 #footer {
@@ -427,7 +435,11 @@ a {
   color: white;
 }
 
-
+.celebrant-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #e91e63;
+}
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
