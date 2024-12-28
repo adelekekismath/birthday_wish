@@ -1,0 +1,104 @@
+#root{
+    background-color: #ffffff;
+
+}
+
+.theme-amical {
+  }
+  
+  
+
+#bff-img {
+    width: 150px;
+    border: 5px solid #e91e63; 
+    border-radius: 50%; 
+    box-shadow: 0 0 15px #e91e63, 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 10px; /* Espace pour améliorer l'effet */
+    //background: linear-gradient(145deg, #f3e5ab, #e7c855); /* Dégradé doré royal */
+    height: 180px; /* Assurez-vous qu'il correspond à votre image */
+    display: block; /* Centrage */
+    margin: 0 auto; /* Centré sur la page */
+    margin-bottom: 10px;
+  
+  }
+  
+  #bday-age {
+    background: #e91e63;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 5px 0 10px 0;
+  }
+  
+  #bday-date {
+    margin: 0;
+    background: #e91e63;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  #header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #wishes {
+    text-align: center;
+    font-family: "Birthstone", cursive;
+    font-weight: bold;
+    color: #ffffff;
+    max-width: 600px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    padding:0px 30px 30px;
+  
+  }
+  
+  .gift-section {
+    margin-top: 50px;
+  }
+  
+  .gift-title {
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+  }
+  
+  .gift-hint {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+  
+  #gift-img-cheers {
+    height: 200px;
+  }
+  
+  .gift-img {
+    margin: 20px auto;
+    max-width: 400px;
+    height: 400px;
+    border: 6px solid white;
+    border-radius: 10px;
+    background-image: url("../assets/images/gift-cover.jpg");
+    background-size: cover;
+    background-position: center;
+    
+  }
+  
+  #footer {
+    font-style: italic;
+    width: 400px;
+    margin: 40px auto 20px;
+  }
+  
+  a {
+    color: white;
+  }
+  
+  .celebrant-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e91e63;
+  }
+  
+  

@@ -17,15 +17,15 @@ const QUALITIES_WITH_DETAILS = {
   },
   Généreux: {
     phrase: "Ta générosité illumine la journée de tout le monde 🌟",
-    gifUrl: "https://i.giphy.com/3o7TKP9lnyTJJMSZ9C.webp", 
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnVrN3N1OHh6Zm5lMTdhdTZwOXN2cnZoNjV2aHZqOXNtN205dnlpeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTk9ZZRGWEelhRiEak/giphy.gif", 
   },
   Loyal: {
     phrase: "Ta loyauté est sans égal 🤝",
-    gifUrl: "https://i.giphy.com/l41lVSY4qHRcV3kQY.webp", 
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG0xZDBleThjNWMxcXhzZGxqaGRkdnRpcDQ0MW1hMTNydzJ0ZTc4MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XY9yFG2i64OrEJ4ooo/giphy.gif", 
   },
   Honnête: {
     phrase: "Ton honnêteté est un trésor rare 💎",
-    gifUrl: "https://i.giphy.com/3oEjHI0jJ20Rq4LB7Y.webp",
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTl6cm8ydmV3Zm03aTdzY3VoN24xdmZ3ZWllNXlqaWRhbnJna3U0aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5t2ev2eCEzYWjag91c/giphy.gif",
   },
   Courageux: {
     phrase: "Ton courage est sans limites 🦁",
@@ -33,9 +33,32 @@ const QUALITIES_WITH_DETAILS = {
   },
   Aventurier: {
     phrase: "Tu embrasses la vie comme un véritable aventurier 🌍",
-    gifUrl: "https://i.giphy.com/3oEjHCWdU7F4a1bfW8.webp", // Aventurier
+    gifUrl: "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3pyeGZoZ3Y4NDlhZGFxaGcyajl3b3pweHpvY295MGg5cDVmaDhrZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6IrCq47L0Z9IuUf6Q2/giphy.gif", // Aventurier
   },
 };
 
+const QUALITIESLIST = [
+    "Drôle",
+    "Gentil",
+    "Intelligent",
+    "Créatif",
+    "Généreux",
+    "Loyal",
+    "Honnête",
+    "Courageux",
+    "Aventurier",
+  ];
+  const QUALITIESICONSOBJECT = {
+    Drôle: "😂",
+    Gentil: "🌸",
+    Intelligent: "🧠",
+    Créatif: "🎨",
+    Généreux: "🎁",
+    Loyal: "🔒",
+    Honnête: "🤞",
+    Courageux: "🦸",
+    Aventurier: "🌍",
+  };
+
   
-  export default QUALITIES_WITH_DETAILS;
+  export { QUALITIESLIST, QUALITIESICONSOBJECT, QUALITIES_WITH_DETAILS };

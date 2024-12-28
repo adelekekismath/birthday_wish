@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router";
 import { db, storage } from "../data/firebaseConfig";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import QUALITIES_WITH_DETAILS from "../data/qualities";
-
+import {QUALITIES_WITH_DETAILS} from "../data/qualities";
+import '../styles/Wishes.scss'
 
 
 export default function Wishes() {
+    const themeColors = {
+        amical: "#ff8a65",
+        familial: "#ff80ab",
+        romantique: "#ff80ab"
+    };
+
     const [searchParams, setSearchParams] = useSearchParams();
     const [celebrant, setCelebrant] = useState({});
     const firebaseDocRef = searchParams.get("id");
@@ -37,18 +43,19 @@ export default function Wishes() {
 
     return (
         celebrant && (
-        <div id="wishes">
+        <div id="wishes" className={`theme-${celebrant.theme}`} style={{backgroundColor: themeColors[celebrant.theme]}}>
         <div id="header">
-            <h1>Today is &nbsp; <span className="celebrant-name">{celebrant.name}</span> 's birthday 🎉 </h1>
-            <img id="bff-img" src={celebrant.celebrantPhotoUrl}/>
-            <h2 id="bday-age">{celeBrantAge} years old</h2>
-            <h4 id="bday-date">{celebrant.dateOfBirth}</h4>
+            <h1>Today is &nbsp; <span className="celebrant-name">{celebrant.receiverName}</span> 's birthday 🎉 </h1>
+            <img id="bff-img" style={{borderColor: celebrant.favoriteColor}} src={celebrant.celebrantPhotoUrl}/>
+            <h2 id="bday-age" style={{backgroundColor: celebrant.favoriteColor}}>{celeBrantAge} years old</h2>
+            <h4 id="bday-date" style={{backgroundColor: celebrant.favoriteColor}}>{celebrant.dateOfBirth}</h4>
         </div>
         
         <div className="gift-section">
             <h2 className="gift-title">Voici à quel point je suis heureuse pour toi aujourd'hui 🥳</h2>
             <div className="gift-img" id="gift-img-happy" style={{backgroundImage: `url('https://i.pinimg.com/originals/12/c8/00/12c800aaca044f40c1402d24b5dabfd8.gif')`}}></div>
         </div>
+        
 
         {celebrant.qualities && Object.keys(QUALITIES_WITH_DETAILS).map((quality) => {
             if (celebrant.qualities.includes(quality)) {
