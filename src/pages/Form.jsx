@@ -108,7 +108,7 @@ function Form() {
 
   return (
     <div className="form-container">
-      {!link ? (
+      {/* {!link ? (
         <form onSubmit={handleSubmit} className="birthday-form">
           <div>
             <h1 className="form-title">
@@ -261,7 +261,7 @@ function Form() {
             🎁 Générer votre vœu
           </button>
         </form>
-      ) : (
+      ) : (  */}
         <div className="link-container">
           <p className="link-display">
             🎉 Votre lien :{" "}
@@ -279,7 +279,7 @@ function Form() {
             Retour
           </button>
         </div>
-      )}
+    {/* )} */}
     </div>
   );
 }
