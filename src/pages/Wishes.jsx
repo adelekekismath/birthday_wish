@@ -45,10 +45,16 @@ export default function Wishes() {
         celebrant && (
         <div id="wishes" className={`theme-${celebrant.theme}`} style={{backgroundColor: themeColors[celebrant.theme]}}>
         <div id="header">
-            <h1>Today is &nbsp; <span className="celebrant-name">{celebrant.receiverName}</span> 's birthday 🎉 </h1>
+            <h1>Aujourdh'ui, c'est l'anniversaire de &nbsp; <span style={{color: celebrant.favoriteColor}} className="celebrant-name">{celebrant.receiverName}</span> 🎉 </h1>
             <img id="bff-img" style={{borderColor: celebrant.favoriteColor}} src={celebrant.celebrantPhotoUrl}/>
-            <h2 id="bday-age" style={{backgroundColor: celebrant.favoriteColor}}>{celeBrantAge} years old</h2>
+            <h2 id="bday-age" style={{backgroundColor: celebrant.favoriteColor}}>{celeBrantAge} ans</h2>
             <h4 id="bday-date" style={{backgroundColor: celebrant.favoriteColor}}>{celebrant.dateOfBirth}</h4>
+        </div>
+
+        <div className="card-message">
+            <h2 className="card-message-title">Un petit message pour toi 💌</h2>
+            <p className="card-message-content text-medium">{celebrant.birthdayMessage}</p>
+            <p className="card-message-footer">De la part de {celebrant.senderName}</p>
         </div>
         
         <div className="gift-section">

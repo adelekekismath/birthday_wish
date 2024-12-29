@@ -100,5 +100,38 @@
     font-weight: bold;
     color: #e91e63;
   }
+
+  .card-message {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px;
+  
+    max-width: 500px;
+    min-height: 200px;
+    padding: 25px;
+  
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.29);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
+  
+    backdrop-filter: blur(15px);
+  }
+
+  .card-message-content {
+    margin: 1px;
+  }
+  
+  .card-message-footer {
+    font-size: 1.2em;
+    color: #446;
+    align-self: flex-end;
+  }
+
+  .text-medium {
+    font-size: 1.7em;
+  }
   
   

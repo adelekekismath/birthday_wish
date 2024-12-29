@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Icon from "@mdi/react";
+import { mdiContentCopy } from "@mdi/js";
 import { db, storage } from "../data/firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -11,6 +13,7 @@ function Form() {
   const [selectedImageUrl, setSelectedImageUrl] = useState(
     "src/assets/images/avatar.jpg"
   );
+
   const [celebrantImage, setCelebrantImage] = useState(null);
 
   const [link, setLink] = useState("");
@@ -73,6 +76,10 @@ function Form() {
     setLink("");
   };
 
+  const copyLinkOnClipboard = () => {
+    navigator.clipboard.writeText(link);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -93,7 +100,7 @@ function Form() {
       });
 
       console.log("Document written with ID: ", docRef.id);
-      setLink(`/wishes?id=${docRef.id}`);
+      setLink(`${window.location.origin}/wishes?id=${docRef.id}`);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
@@ -242,6 +249,8 @@ function Form() {
                     id="birthday-message"
                     name="birthdayMessage"
                     rows="4"
+                    value={formData.birthdayMessage}
+                    onChange={handleChangeInput}
                   ></textarea>
                 </label>
               </div>
@@ -262,9 +271,9 @@ function Form() {
           </p>
           <button
             className="copy-button"
-            onClick={() => navigator.clipboard.writeText(link)}
+            onClick={copyLinkOnClipboard}
           >
-            Copier le lien
+            <Icon path={mdiContentCopy} size={1} />
           </button>
           <button className="back-button" onClick={resetForm}>
             Retour
