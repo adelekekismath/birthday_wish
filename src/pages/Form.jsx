@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Icon from "@mdi/react";
-import { mdiContentCopy } from "@mdi/js";
+import { mdiContentCopy, mdiArrowLeft, mdiInstagram, mdiWhatsapp, mdiSnapchat } from "@mdi/js";
 import { db, storage } from "../data/firebaseConfig";
 import { addDoc, collection } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -30,6 +30,8 @@ function Form() {
     favoriteColor: "#rrggbb",
 
   });
+
+  const shareMessage = "Hey, viens voir ce vœu d'anniversaire génial que j'ai créé pour toi !   ";
 
   const handleChangeInput = (e) => {
     const { name, value, checked } = e.target;
@@ -108,7 +110,7 @@ function Form() {
 
   return (
     <div className="form-container">
-      {/* {!link ? (
+      {!link ? (
         <form onSubmit={handleSubmit} className="birthday-form">
           <div>
             <h1 className="form-title">
@@ -261,25 +263,54 @@ function Form() {
             🎁 Générer votre vœu
           </button>
         </form>
-      ) : (  */}
+      ) : ( 
         <div className="link-container">
-          <p className="link-display">
+            <h1 className="form-title">🎉 Votre vœu d'anniversaire a été créé ! 🎂</h1>
+            <p className="text-small" > Partagez le lien ci-dessous avec vos amis pour qu'ils puissent découvrir votre vœu d'anniversaire personnalisé.</p>
+            <div className="link-preview">
+                <p className="text-small"> Voici un aperçu de votre vœu d'anniversaire :</p>
+                <iframe  height={500} src={link} title="Birthday Wish" className="link-iframe"></iframe>
+            </div>
+          <p className="link-display text-small">
             🎉 Votre lien :{" "}
             <a href={link} className="link" target="_blank" rel="noopener">
               {link}
             </a>
           </p>
-          <button
-            className="copy-button"
-            onClick={copyLinkOnClipboard}
-          >
-            <Icon path={mdiContentCopy} size={1} />
+          <button className="copy-button" onClick={copyLinkOnClipboard}>
+            <Icon path={mdiContentCopy} size={1} /> Copier le lien
           </button>
-          <button className="back-button" onClick={resetForm}>
-            Retour
-          </button>
+          {/* <button className="back-button" onClick={resetForm}>
+            <Icon path={mdiArrowLeft} size={1} /> Retour
+          </button> */}
+          <div className="share-buttons">
+            <a
+              href={`https://www.instagram.com/?url=${encodeURIComponent(link)}`}
+              className="share-button instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon path={mdiInstagram} size={1} /> Instagram
+            </a>
+            <a
+              href={`https://wa.me/?text=${encodeURIComponent(shareMessage + " " + link)}`}
+              className="share-button whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Icon path={mdiWhatsapp} size={1} /> WhatsApp
+            </a>
+            <a
+              href={`https://www.snapchat.com/scan?attachmentUrl=${encodeURIComponent(link)}`}
+              className="share-button snapchat"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+                <Icon path={mdiSnapchat} size={1} /> Snapchat
+            </a>
+          </div>
         </div>
-    {/* )} */}
+    )} 
     </div>
   );
 }

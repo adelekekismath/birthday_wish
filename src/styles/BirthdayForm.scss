@@ -80,6 +80,63 @@ input , select{
   color: #333;
 }
 
+.share-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .share-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .share-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .share-button.instagram {
+    background-color: #e4405f;
+  }
+
+  .share-button.instagram:hover {
+    background-color: #c13584;
+  }
+  
+  .share-button.whatsapp {
+    background-color: #25d366;
+  }
+  
+  .share-button.whatsapp:hover {
+    background-color: #128c7e;
+  }
+  
+  .share-button.snapchat {
+    background-color: #fffc00;
+    color: black;
+  }
+  
+  .share-button.snapchat:hover {
+    background-color: #ffeb3b;
+  }
+  
+  .share-button.tiktok {
+    background-color: #010101;
+  }
+  
+  .share-button.tiktok:hover {
+    background-color: #333333;
+  }
 
 
 .form-input {
@@ -353,6 +410,11 @@ input , select{
 .copy-button {
   background-color: #28a745;
   color: white;
+  font-family: inherit;
+}
+
+.text-small {
+  font-size: 1.4em;
 }
 
 .back-button {
@@ -386,6 +448,26 @@ input , select{
 .link:hover {
     text-decoration: underline;
 }
+
+.link-preview {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .link-iframe {
+    width: 100%;
+    position: relative;
+    border: none;
+  }
+  
+  .link-iframe iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 
 .copy-button, .back-button {
     display: flex;
