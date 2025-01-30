@@ -117,7 +117,7 @@ export default function Wishes() {
 
                 <div className="gift-section">
                     <h2 className="gift-title">
-                        À votre santé ! 🥂
+                        À ta santé ! 🥂
                     </h2>
                     <div 
                         className="gift-img" 

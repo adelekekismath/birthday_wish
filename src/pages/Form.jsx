@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import Icon from "@mdi/react";
 import {
     mdiContentCopy,
@@ -43,17 +44,29 @@ function Form() {
     const handleImageChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            setSelectedImageUrl(URL.createObjectURL(file));
-            setCelebrantImage(file);
+          setSelectedImageUrl(URL.createObjectURL(file));
+          setCelebrantImage(file);
         }
-    };
-
-    const handleUpload = async () => {
+      };
+    
+      const handleUpload = async () => {
         if (!celebrantImage) return null;
-        const storageRef = ref(storage, `images/${celebrantImage.name}`);
-        await uploadBytes(storageRef, celebrantImage);
-        return await getDownloadURL(storageRef);
-    };
+    
+        const formData = new FormData();
+        formData.append("file", celebrantImage);
+        formData.append("upload_preset", "birth_day_wishes");
+    
+        try {
+          const response = await axios.post(
+            "https://api.cloudinary.com/v1_1/dng0tnmki/image/upload",
+            formData
+          );
+          return response.data.secure_url;
+        } catch (error) {
+          console.error("Error uploading image to Cloudinary: ", error);
+          return null;
+        }
+      };
 
     const resetForm = () => {
         setFormData({
@@ -84,10 +97,21 @@ function Form() {
                 celebrantPhotoUrl,
             });
             setLink(`${window.location.origin}/wishes?id=${docRef.id}`);
+
+            const savedWishes = JSON.parse(localStorage.getItem('savedWishes')) || [];
+            savedWishes.push(docRef.id);
+            localStorage.setItem('savedWishes', JSON.stringify(savedWishes));
+
+
         } catch (error) {
             console.error("Error adding document: ", error);
         }
     };
+
+    const today = new Date().toISOString().split("T")[0];
+
+
+    
 
     return (
         <div className="form-container">
@@ -155,6 +179,7 @@ function Form() {
                     <input
                     type="date"
                     name="dateOfBirth"
+                    max={today}
                     value={formData.dateOfBirth}
                     onChange={handleChangeInput}
                     required
@@ -174,29 +199,30 @@ function Form() {
                 <label className="form-label">
                     Sa photo :
                     <div className="upload-container">
-                    <div className="upload-preview">
-                        {selectedImageUrl ? (
-                        <img
-                            src={selectedImageUrl}
-                            alt="Preview"
-                            className="image-preview"
+                        <div className="upload-preview">
+                            {selectedImageUrl ? (
+                            <img
+                                src={selectedImageUrl}
+                                alt="Preview"
+                                className="image-preview"
+                            />
+                            ) : (
+                            <p className="placeholder">No image selected</p>
+                            )}
+                        </div>
+                        <label htmlFor="image-upload" className="custom-file-label">
+                            <i className="fa fa-upload" aria-hidden="true"></i>
+                        </label>
+                        <input
+                            type="file"
+                            id="image-upload"
+                            name="celebrantPhotoUrl"
+                            accept="image/*"
+                            className="form-input file-input"
+                            onChange={handleImageChange}
                         />
-                        ) : (
-                        <p className="placeholder">No image selected</p>
-                        )}
                     </div>
-                    <label htmlFor="image-upload" className="custom-file-label">
-                        <i className="fa fa-upload" aria-hidden="true"></i>
-                    </label>
-                    <input
-                        type="file"
-                        id="image-upload"
-                        name="celebrantPhotoUrl"
-                        accept="image/*"
-                        className="form-input file-input"
-                        onChange={handleImageChange}
-                    />
-                    </div>
+                 
                 </label>
                 </div>
                 <div className="birthday-colum-inputs">

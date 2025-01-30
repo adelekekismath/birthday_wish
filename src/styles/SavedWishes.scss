@@ -1,0 +1,37 @@
+/* filepath: /home/kismath/Workspace/birthday_wish/src/styles/SavedWishes.scss */
+.saved-wishes-container {
+    background-color: #dbcadb;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .wishes-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .wish-item {
+    background-color: #f9f9f9;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wish-item h2 {
+    margin: 0 0 10px;
+  }
+  
+  .wish-item p {
+    margin: 0 0 10px;
+  }
+  
+  .wish-item a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .wish-item a:hover {
+    text-decoration: underline;
+  }
