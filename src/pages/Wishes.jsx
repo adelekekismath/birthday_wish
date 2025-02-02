@@ -49,17 +49,17 @@ export default function Wishes() {
                 style={{ backgroundColor: themeColors[celebrant.theme] }}
             >
                 <div id="header">
-                    <h1>
-                        Aujourdh'ui, c'est l'anniversaire de &nbsp; 
+                    <h1 id="bday-title">
+                    Aujourd’hui, c’est un jour spécial… C’est l’anniversaire de  &nbsp; 
                         <span style={{ color: celebrant.favoriteColor }} className="celebrant-name">
-                            {celebrant.receiverName}
+                            {celebrant.receiverName}  ! 🎉🥳
                         </span>
                          🎉 
                     </h1>
                     <img 
                         id="bff-img" 
                         style={{ borderColor: celebrant.favoriteColor }} 
-                        src={celebrant.celebrantPhotoUrl}
+                        src={celebrant.photo}
                     />
                     <h2 
                         id="bday-age" 
@@ -75,7 +75,21 @@ export default function Wishes() {
                     </h4>
                 </div>
 
-                <div className="card-message">
+                <div className="card">
+                <div className="back"></div>
+                <div className="front">
+                    <div className="imgset">
+                        <img width="100%" src="https://design-assets.adobeprojectm.com/content/download/express/public/urn:aaid:sc:VA6C2:219b4485-1ea5-5ecd-a94f-353f1dfc86e1/component?assetType=TEMPLATE&etag=30dcacb6b82041e6b9e23a2b6c46e9f6&revision=c16844ee-7b81-47eb-9e6f-396383c4b395&component_id=6af60343-29f6-430e-9201-712c126e9151"/>
+                    </div>
+                </div>
+                <div className="text-container">
+                    <p id="head">Happy Birthday {celebrant.receiverName}!</p>
+                    <p>{celebrant.birthdayMessage}</p>
+                    <p className="card-message-footer">De la part de {celebrant.senderName}</p>
+                </div>
+                </div>
+
+                {/* <div className="card-message">
                     <h2 className="card-message-title">
                         Un petit message pour toi 💌
                     </h2>
@@ -85,7 +99,7 @@ export default function Wishes() {
                     <p className="card-message-footer">
                         De la part de {celebrant.senderName}
                     </p>
-                </div>
+                </div> */}
 
                 <div className="gift-section">
                     <h2 className="gift-title">
@@ -99,10 +113,10 @@ export default function Wishes() {
                 </div>
 
 
-                {celebrant.qualities && Object.keys(QUALITIES_WITH_DETAILS).map((quality) => {
+                {celebrant.qualities && Object.keys(QUALITIES_WITH_DETAILS).map((quality, index) => {
                     if (celebrant.qualities.includes(quality)) {
                         return (
-                            <div className="gift-section">
+                            <div key={index} className="gift-section">
                                 <h2 className="gift-title">
                                     {QUALITIES_WITH_DETAILS[quality].phrase}
                                 </h2>
