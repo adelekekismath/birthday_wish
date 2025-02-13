@@ -14,6 +14,7 @@ import { addDoc, collection } from "firebase/firestore";
 import "../styles/BirthdayForm.scss";
 import { QUALITIESLIST, QUALITIESICONSOBJECT } from "../data/qualities";
 import { useLocation } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 function Form() {
   const [qualitiesList] = useState(QUALITIESLIST);
@@ -40,8 +41,8 @@ function Form() {
     if (location.state && location.state.wish) {
       const wish = location.state.wish;
       setFormData({
-        senderName: wish.senderName,
-        receiverName: wish.receiverName,
+        senderName: user.email || wish.senderName,
+        receiverName: user.displayName || wish.receiverName,
         dateOfBirth: wish.dateOfBirth,
         photo: wish.celebrantPhotoUrl,
         qualities: [...wish.qualities],
@@ -58,6 +59,8 @@ function Form() {
 
   const shareMessage =
     "🎉 Hey, viens voir ce vœu d'anniversaire génial que j'ai créé pour toi ! 🎂✨";
+
+    const { user } = useUser();
 
   const handleChangeInput = (e) => {
     const { name, value, checked } = e.target;
@@ -109,6 +112,8 @@ function Form() {
     setLink("");
   };
 
+
+
   const copyLinkOnClipboard = () => {
     navigator.clipboard.writeText(link);
     alert("Lien copié !");
@@ -125,19 +130,36 @@ function Form() {
         await updateDoc(docRef, {
           ...formData,
           celebrantPhotoUrl,
+          userId: user ? user.uid : null
         });
         setLink(`${window.location.origin}/wishes?id=${wishId}`);
       } else {
-        const docRef = await addDoc(collection(db, "birthdayWishes"), {
-          ...formData,
-          celebrantPhotoUrl,
-        });
-        setLink(`${window.location.origin}/wishes?id=${docRef.id}`);
-
-        const savedWishes =
-          JSON.parse(localStorage.getItem("savedWishes")) || [];
-        savedWishes.push(docRef.id);
-        localStorage.setItem("savedWishes", JSON.stringify(savedWishes));
+        if (user) {
+            const docRef = await addDoc(collection(db, "birthdayWishes"), {
+              ...formData,
+              celebrantPhotoUrl,
+              userId: user.uid,
+            });
+            setLink(`${window.location.origin}/wishes?id=${docRef.id}`);
+  
+            const savedWishes = JSON.parse(localStorage.getItem('savedWishes')) || [];
+            savedWishes.push(docRef.id);
+            localStorage.setItem('savedWishes', JSON.stringify(savedWishes));
+          } else {
+            const savedWishes = JSON.parse(localStorage.getItem('savedWishes')) || [];
+            if (savedWishes.length >= 3) {
+              alert("Vous avez atteint la limite de 3 vœux sans compte. Veuillez vous inscrire pour créer plus de vœux.");
+              return;
+            }
+            const docRef = await addDoc(collection(db, "birthdayWishes"), {
+              ...formData,
+              celebrantPhotoUrl,
+              userId: null,
+            });
+            savedWishes.push(docRef.id);
+            localStorage.setItem('savedWishes', JSON.stringify(savedWishes));
+            setLink(`${window.location.origin}/wishes?id=${docRef.id}`);
+          }
       }
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -158,7 +180,7 @@ function Form() {
               <h2 className="form-subtitle">
                 🎈 Informations sur l'expéditeur
               </h2>
-              <label className="form-label">
+              { !user && <label className="form-label">
                 Votre prénom :
                 <input
                   type="text"
@@ -167,9 +189,9 @@ function Form() {
                   onChange={handleChangeInput}
                   required
                   className="form-input"
-                />
-              </label>
-              <label className="form-label">
+                /> 
+              </label>}
+              { !user && <label className="form-label">
                 Votre email :
                 <input
                   type="email"
@@ -179,7 +201,7 @@ function Form() {
                   required
                   className="form-input"
                 />
-              </label>
+              </label>}
               <label className="form-label">
                 Thème :
                 <select

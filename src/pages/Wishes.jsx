@@ -14,7 +14,7 @@ export default function Wishes() {
     };
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const [celebrant, setCelebrant] = useState({});
+    const [celebrant, setCelebrant] = useState(null);
     const firebaseDocRef = searchParams.get("id");
     const [celeBrantAge, setCelebrantAge] = useState(0);
 
@@ -42,7 +42,7 @@ export default function Wishes() {
 
 
     return (
-        celebrant && (
+        celebrant !== null && (
             <div 
                 id="wishes" 
                 className={`theme-${celebrant.theme}`} 
@@ -59,7 +59,7 @@ export default function Wishes() {
                     <img 
                         id="bff-img" 
                         style={{ borderColor: celebrant.favoriteColor }} 
-                        src={celebrant.photo}
+                        src={celebrant.celebrantPhotoUrl}
                     />
                     <h2 
                         id="bday-age" 

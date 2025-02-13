@@ -1,0 +1,104 @@
+.about-section {
+    background: url("https://torange.biz/photo/41/IMAGE/fireworks-night-sky-background-41362.jpg") center/cover no-repeat;
+    color: white;
+    text-align: left;
+    padding: 80px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+  }
+  
+  .about-content {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    gap: 50px;
+    text-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .about-text {
+    flex: 1;
+    max-width: 500px;
+  
+    h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  
+    .highlight {
+      color:#ff4081 ;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+  
+    .cta-button {
+      display: inline-block;
+      background:#ff4081;
+      color: #333;
+      font-weight: bold;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+  
+      &:hover {
+        background: #FFA000;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.5);
+      }
+    }
+  }
+  
+  .about-services {
+    flex: 1;
+    max-width: 500px;
+    
+    h2 {
+      font-size: 2rem;
+      color:#ff4081 ;
+      margin-bottom: 20px;
+    }
+  
+    .service-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.144);
+      border-radius: 10px;
+      
+      .icon {
+        font-size: 2rem;
+        margin-right: 15px;
+      }
+  
+      h3 {
+        font-size: 1.5rem;
+      }
+  
+      p {
+        font-size: 1rem;
+        opacity: 0.9;
+      }
+    }
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 768px) {
+    .about-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .about-text,
+    .about-services {
+      max-width: 100%;
+    }
+  }
+  
