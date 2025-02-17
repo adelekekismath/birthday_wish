@@ -118,7 +118,7 @@ export default function Login() {
                 </div>
                 <button type="submit">Se connecter</button>
                 <div className="form-footer">
-                    Vous n'avez pas de compte ? <a href="/login">Inscrivez-vous</a>
+                    Vous n'avez pas de compte ? <a href="/register">Inscrivez-vous</a>
                 </div>
 
                 <div className="line-divider"></div>
