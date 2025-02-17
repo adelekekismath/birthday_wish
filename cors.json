@@ -1,6 +1,6 @@
 [
     {
-      "origin": ["http://localhost:*"],
+      "origin": ["http://localhost:*", "https://festivo.netlify.app/"],
       "method": ["GET", "POST", "PUT"],
       "maxAgeSeconds": 3600,
       "responseHeader": ["Content-Type"]
